@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/homepage.dart';
+import 'package:wallpaper_app/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      home: const Homescreen(),
+      home: const SplashScreen(),
     );
   }
 }

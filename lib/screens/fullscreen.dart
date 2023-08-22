@@ -66,10 +66,15 @@ class _FullscreenState extends State<Fullscreen> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.network(
-                  widget.img['src']['large2x'],
-                  fit: BoxFit.cover,
-                ),
+                (widget.img['width'] > widget.img['height'])
+                    ? Image.network(
+                        widget.img['src']['large2x'],
+                        fit: BoxFit.contain,
+                      )
+                    : Image.network(
+                        widget.img['src']['large2x'],
+                        fit: BoxFit.cover,
+                      ),
                 Positioned(
                   width: MediaQuery.of(context).size.width,
                   bottom: 70,
@@ -149,12 +154,33 @@ class _FullscreenState extends State<Fullscreen> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                'Size: ${widget.img['width']} x ${widget.img['height']}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  (widget.img['width'] > widget.img['height'])
+                                      ? const Text(
+                                          'Layout: Landscape',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                          ),
+                                        )
+                                      : const Text(
+                                          'Layout: Portrait',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                  Text(
+                                    'Size: ${widget.img['width']} x ${widget.img['height']}',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -166,39 +192,6 @@ class _FullscreenState extends State<Fullscreen> {
               ],
             ),
           ),
-          // Container(
-          //   color: Colors.black54.withOpacity(0.6),
-          //   height: 40,
-          //   child: Center(
-          //     child: Padding(
-          //       padding: const EdgeInsets.symmetric(horizontal: 10),
-          //       child: Padding(
-          //         padding: const EdgeInsets.symmetric(horizontal: 8),
-          //         child: Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             Expanded(
-          //               child: Text(
-          //                 'By: ${widget.img['photographer']}',
-          //                 style: const TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 14,
-          //                 ),
-          //               ),
-          //             ),
-          //             Text(
-          //               'Size: ${widget.img['width']} x ${widget.img['height']}',
-          //               style: const TextStyle(
-          //                 color: Colors.white,
-          //                 fontSize: 14,
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
